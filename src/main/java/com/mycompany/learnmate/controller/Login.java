@@ -74,22 +74,28 @@ public class Login implements Serializable {
                 HttpSession sesion = (HttpSession) contexto.getExternalContext().getSession(true);
                 this.listaPermisos = pfl.permisosByUser(user);
                 sesion.setAttribute("usuario", user);
-                
+
                 // 🔑 Guardar también el profesor asociado al usuario (si aplica)
-    if (user.getPersona() != null) {
-        Profesores profesor = profesoresEJB.findByPersona(user.getPersona());
-        if (profesor != null) {
-            sesion.setAttribute("profesorLogueado", profesor);
-        }
-    }
+                if (user.getPersona() != null) {
+                    Profesores profesor = profesoresEJB.findByPersona(user.getPersona());
+                    if (profesor != null) {
+                        sesion.setAttribute("profesorLogueado", profesor);
+                    }
+                }
                 // Redirigir según rol
                 for (RolesUsuario ru : user.getRolesUsuarioList()) {
                     int rolId = ru.getRolId().getRolId();
                     if (rolId == 1) {
                         return "views/inicio.xhtml?faces-redirect=true";
                     }
+                    if (rolId == 2) {
+                        return "views/usuarios/docentes/Docente.xhtml?faces-redirect=true";
+                    }
                     if (rolId == 3) {
-                        return "views/iniciousuario.xhtml?faces-redirect=true";
+                        return "views/usuarios/estudiantes/estudiante.xhtml?faces-redirect=true";
+                    }
+                    if (rolId == 4) {
+                        return "views/usuarios/acudientes/acudiente.xhtml?faces-redirect=true";
                     }
                 }
 
