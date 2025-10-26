@@ -92,7 +92,7 @@ public class Login implements Serializable {
                         return "views/usuarios/docentes/Docente.xhtml?faces-redirect=true";
                     }
                     if (rolId == 3) {
-                        return "views/usuarios/estudiantes/estudiante.xhtml?faces-redirect=true";
+                        return "views/usuarios/estudiantes/estudiantes.xhtml?faces-redirect=true";
                     }
                     if (rolId == 4) {
                         return "views/usuarios/acudientes/acudiente.xhtml?faces-redirect=true";
