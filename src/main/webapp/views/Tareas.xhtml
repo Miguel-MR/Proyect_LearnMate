@@ -29,13 +29,16 @@
                                      style="max-width: 110px;"/>
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                                Bienvenido a esta sección, aquí podrá crear y asignar actividades a cursos, materias y estudiantes.
+                                Bienvenido a esta sección, aquí podrá crear y asignar actividades y tareas a cursos, materias y estudiantes.
                             </div>
                         </div>
                     </div>
 
-                    <!-- FORMULARIO PRINCIPAL -->
-                    <div class="container-fluid">
+                    <!-- ==================================================== -->
+                    <!-- =============== FORMULARIO ACTIVIDAD =============== -->
+                    <!-- ==================================================== -->
+                    <div class="container-fluid" style="margin-bottom:40px;">
+                        <h2>Creación de Actividades</h2>
                         <h:form enctype="multipart/form-data" styleClass="needs-validation row g-3">
 
                             <!-- NOMBRE ACTIVIDAD -->
@@ -62,7 +65,7 @@
                                 <h:message for="tipo" style="color:red"/>
                             </div>
 
-                            <!-- VALOR O PORCENTAJE -->
+                            <!-- VALOR -->
                             <div class="col-md-4">
                                 <h:outputLabel for="valor" value="Valor / Porcentaje" styleClass="form-label"/>
                                 <h:inputText id="valor" value="#{controllerActividad.actividad.valor}" 
@@ -83,7 +86,7 @@
                                 <h:message for="fechaInicio" style="color:red"/>
                             </div>
 
-                            <!-- FECHA FIN / ENTREGA -->
+                            <!-- FECHA ENTREGA -->
                             <div class="col-md-4">
                                 <h:outputLabel for="fechaFin" value="Fecha Entrega" styleClass="form-label"/>
                                 <h:inputText id="fechaFin" value="#{controllerActividad.actividad.fechaFin}" 
@@ -150,11 +153,59 @@
                                 <h:inputFile id="archivo" value="#{controllerActividad.archivo}" required="false"/>
                             </div>
 
-                            <!-- BOTÓN ENVIAR -->
+                            <!-- BOTÓN -->
                             <div class="col-12 text-center" style="margin-top: 20px;">
                                 <h:commandButton value="Registrar Actividad" 
                                                  action="#{controllerActividad.registrarActividad()}"
                                                  styleClass="btn btn-primary"/>
+                                <h:messages globalOnly="true" style="color:green"/>
+                            </div>
+                        </h:form>
+                    </div>
+
+                    <!-- ==================================================== -->
+                    <!-- =============== FORMULARIO TAREAS ================= -->
+                    <!-- ==================================================== -->
+                    <div class="container-fluid">
+                        <h2>Gestión de Tareas</h2>
+                        <h:form styleClass="row g-3">
+
+                            <!-- NOMBRE TAREA -->
+                            <div class="col-md-4">
+                                <h:outputLabel for="nombreTarea" value="Nombre de la Tarea" styleClass="form-label"/>
+                                <h:inputText id="nombreTarea" value="#{tareasController.tareaNueva.nombreTarea}" 
+                                             styleClass="form-control" required="true"
+                                             requiredMessage="El nombre de la tarea es obligatorio."/>
+                                <h:message for="nombreTarea" style="color:red"/>
+                            </div>
+
+                            <!-- FECHA ENTREGA -->
+                            <div class="col-md-4">
+                                <h:outputLabel for="fechaEntrega" value="Fecha de Entrega" styleClass="form-label"/>
+                                <h:inputText id="fechaEntrega" value="#{tareasController.tareaNueva.fechaEntrega}">
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                    <f:passThroughAttribute name="type" value="date"/>
+                                </h:inputText>
+                                <h:message for="fechaEntrega" style="color:red"/>
+                            </div>
+
+                            <!-- ASIGNACIÓN -->
+                            <div class="col-md-4">
+                                <h:outputLabel for="asignacion" value="Asignación" styleClass="form-label"/>
+                                <h:selectOneMenu id="asignacion" value="#{tareasController.idAsignacionSeleccionada}" 
+                                                 styleClass="form-control">
+                                    <f:selectItem itemLabel="-- Seleccione una asignación --" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{tareasController.listaAsignaciones}" var="asig" 
+                                                   itemLabel="#{asig.asignaturaId.nombreAsignatura}" 
+                                                   itemValue="#{asig.asignacionId}"/>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <!-- BOTÓN GUARDAR -->
+                            <div class="col-12 text-center" style="margin-top: 20px;">
+                                <h:commandButton value="Registrar Tarea" 
+                                                 action="#{tareasController.crearTarea()}"
+                                                 styleClass="btn btn-success"/>
                                 <h:messages globalOnly="true" style="color:green"/>
                             </div>
                         </h:form>

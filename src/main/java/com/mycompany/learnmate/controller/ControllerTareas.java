@@ -1,14 +1,11 @@
-
-
-   
 package com.mycompany.learnmate.controller;
 
 import com.mycompany.learnmate.entities.Tareas;
 import com.mycompany.learnmate.entities.Cursos;
 import com.mycompany.learnmate.entities.AsignacionAsignaturas;
-import com.mycompany.learnmate.services.TareasFacade;
-import com.mycompany.learnmate.services.CursosFacade;
-import com.mycompany.learnmate.services.AsignacionAsignaturasFacade;
+import com.mycompany.learnmate.services.TareasFacadeLocal;
+import com.mycompany.learnmate.services.CursosFacadeLocal;
+import com.mycompany.learnmate.services.AsignacionAsignaturasFacadeLocal;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,16 +16,16 @@ import javax.inject.Named;
 
 @Named(value = "tareasController")
 @SessionScoped
-public class controllerTarea implements Serializable {
+public class ControllerTareas implements Serializable {
 
     @EJB
-    private TareasFacade tareasFacade;
+    private TareasFacadeLocal tareasFacade;
 
     @EJB
-    private CursosFacade cursosFacade;
+    private CursosFacadeLocal cursosFacade;
 
     @EJB
-    private AsignacionAsignaturasFacade asignacionAsignaturasFacade;
+    private AsignacionAsignaturasFacadeLocal asignacionAsignaturasFacade;
 
     private Tareas tareaNueva;
     private List<Tareas> listaTareas;
@@ -125,5 +122,3 @@ public class controllerTarea implements Serializable {
         }
     }
 }
-
-
