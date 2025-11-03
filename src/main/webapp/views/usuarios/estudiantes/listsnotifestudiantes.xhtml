@@ -48,16 +48,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
                             </h:outputText>
                         </h:column>
-                        <h:column>
-                            <f:facet name="header">Acciones</f:facet>
-                            <h:link outcome="/notificacion/index.xhtml" value="✏️ Editar">
-                                <f:param name="notificacionId" value="#{item.notificacionId}" />
-                            </h:link>
-                            <h:outputText value="\u00A0\u00A0" />
-                            <h:commandLink value="🗑️ Eliminar"
-                                           action="#{controllerNotificacion.eliminar(item)}"
-                                           onclick="return confirm('¿Seguro que deseas eliminar esta notificación?');" />
-                        </h:column>
+                        
                     </h:dataTable>
                 </h:form>
             </ui:define>
