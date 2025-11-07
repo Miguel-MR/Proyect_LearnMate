@@ -85,15 +85,20 @@ public class Login implements Serializable {
                 // Redirigir según rol
                 for (RolesUsuario ru : user.getRolesUsuarioList()) {
                     int rolId = ru.getRolId().getRolId();
+                    
+                    // Rol administrador
                     if (rolId == 1) {
                         return "views/inicio.xhtml?faces-redirect=true";
                     }
+                     // Rol Docente
                     if (rolId == 2) {
                         return "views/usuarios/docentes/Docente.xhtml?faces-redirect=true";
                     }
+                     // Rol Estudiante
                     if (rolId == 3) {
-                        return "views/usuarios/estudiantes/estudiante.xhtml?faces-redirect=true";
+                        return "views/usuarios/estudiantes/cuadroHonor?faces-redirect=true";
                     }
+                     // Rol Acudiente
                     if (rolId == 4) {
                         return "views/usuarios/acudientes/acudiente.xhtml?faces-redirect=true";
                     }

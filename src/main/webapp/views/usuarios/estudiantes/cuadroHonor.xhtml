@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./estudiantes.xhtml">
+
+            <ui:define name="content">
+
+                <style>
+                    /* ==== CUADRO DE HONOR ==== */
+                    #cuadro-honor {
+                        animation: fadeIn 1.5s ease-in-out;
+                    }
+
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(20px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+
+                    /* Estilo del título del top 3 */
+                    .honor-title {
+                        color: #000000;
+                        font-weight: 700;
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+
+                    /* ==== FILA DE LOS 3 MEJORES ==== */
+                    .top3-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: 50px;
+                        flex-wrap: wrap;
+                        background: linear-gradient(135deg, #8597ab, #8597ab);
+                        border-radius: 15px;
+                        padding: 40px 20px;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                    }
+
+                    .top3-item {
+                        text-align: center;
+                        transition: transform 0.4s ease, box-shadow 0.4s ease;
+                    }
+
+                    .top3-item:hover {
+                        transform: translateY(-8px);
+                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                    }
+
+                    .top3-item img {
+                        width: 180px;
+                        height: 180px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 5px solid #d4af37;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                        margin-bottom: 15px;
+                        transition: transform 0.3s ease;
+                    }
+
+                    .top3-item img:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .gold-text {
+                        color: #ffffff;
+                        font-weight: 700;
+                    }
+
+                    .student-card {
+                        background: #fff;
+                        border-radius: 15px;
+                        padding: 25px;
+                        text-align: center;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.4s ease, box-shadow 0.4s ease;
+                        animation: slideUp 1s ease;
+                    }
+
+                    .student-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .student-card img {
+                        border-radius: 50%;
+                        border: 3px solid #42495c;
+                        margin-bottom: 10px;
+                        width: 100px;
+                        height: 100px;
+                        object-fit: cover;
+                    }
+
+                    .student-card h5 {
+                        color: #1a237e;
+                        font-weight: 600;
+                    }
+
+                    .student-card p {
+                        color: #555;
+                        margin: 0;
+                    }
+
+                    @keyframes slideUp {
+                        from { transform: translateY(30px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                </style>
+
+                <section id="cuadro-honor" class="container mt-5">
+                    <h2 class="honor-title">🏅 Cuadro de Honor - Mejores Estudiantes</h2>
+
+                    <!-- 3 mejores en una sola fila -->
+                    <div class="top3-container">
+                        <div class="top3-item">
+                            <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 1"/>
+                            <h3 class="gold-text">1° Lugar - Ana Torres</h3>
+                            <p>Grado 11° • Promedio: 4.9</p>
+                        </div>
+                        <div class="top3-item">
+                            <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 2"/>
+                            <h3 class="gold-text">2° Lugar - Maicol Gómez</h3>
+                            <p>Grado 10° • Promedio: 4.8</p>
+                        </div>
+                        <div class="top3-item">
+                            <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 3"/>
+                            <h3 class="gold-text">3° Lugar - María López</h3>
+                            <p>Grado 9° • Promedio: 4.7</p>
+                        </div>
+                    </div>
+
+                    <!-- Otros destacados -->
+                    <h4 class="text-center mb-4 mt-5" style="color:#1a237e;">🎓 Otros Estudiantes Destacados</h4>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="student-card">
+                                <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 4"/>
+                                <h5>Camila Ríos</h5>
+                                <p>Grado 11° • Promedio: 4.6</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="student-card">
+                                <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 5"/>
+                                <h5>Juan Pérez</h5>
+                                <p>Grado 10° • Promedio: 4.5</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="student-card">
+                                <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 6"/>
+                                <h5>Daniela Martínez</h5>
+                                <p>Grado 9° • Promedio: 4.5</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="student-card">
+                                <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 7"/>
+                                <h5>Mateo Herrera</h5>
+                                <p>Grado 8° • Promedio: 4.4</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -7,7 +7,7 @@
 
     <body>
 
-        <ui:composition template="./TemplateSitio.xhtml">
+        <ui:composition template="./estudiantes.xhtml">
 
             <ui:define name="content">
                 <h:form>
@@ -48,18 +48,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
                             </h:outputText>
                         </h:column>
-                        <h:column>
-                            <f:facet name="header">Acciones</f:facet>
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <h:link outcome="/views/notificaciones.xhtml" value="✏️ Editar">
-                                    <f:param name="notificacionId" value="#{item.notificacionId}" />
-                                </h:link>
-                                <h:commandLink value="🗑️ Eliminar"
-                                               action="#{controllerNotificacion.eliminar(item)}"
-                                               onclick="return confirm('¿Seguro que deseas eliminar esta notificación?');"
-                                               style="margin-top: 5px;" />
-                            </div>
-                        </h:column>
+                        
                     </h:dataTable>
                 </h:form>
             </ui:define>
