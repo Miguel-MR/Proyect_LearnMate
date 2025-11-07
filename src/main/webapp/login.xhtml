@@ -1,38 +1,259 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Login</title>
-        <link href="resources/css/login.css" rel="stylesheet" type="text/css"/>
-        <f:event type="preRenderView" listener="#{login.invalidarSesion()}" />
-    </h:head>
-    <h:body>
-        <div class="container">
 
-            <!-- Imagen de la izquierda -->
-            <div class="image-container">
-                <img src="#{request.contextPath}/resources/imagenes/Niña2.png" alt="user-picture" class="img-responsive img-circle center-box"/>
-            </div>
-            <!-- Card Login -->
-            <div class="card">
-                <img src="#{request.contextPath}/resources/imagenes/Logo.png" alt="user-picture" class="img-responsive img-circle center-box"/>
-                <h2>Bienvenido a tu cuenta</h2>
-                <p>Ingresa tu cuenta</p>
-                <h:form>
-                    <h:inputText value="#{login.nombreusuario}" required="true" requiredMessage="El campo usuario es obligatorio"/>
-                    <h:inputSecret value="#{login.contrasenna}" required="true" requiredMessage="El campo Contraseña es obligatorio" />
-                    <h:commandButton value="Ingresar" action="#{login.iniciarSesion()}" />
-                    <h:messages globalOnly="true"/>
+<h:head>
+    <title>Login | Portal</title>
+    <f:event type="preRenderView" listener="#{login.invalidarSesion()}" />
 
-                    <div class="extra-link">
-                        <h:outputLink value="#">¿Olvidaste tu contraseña?</h:outputLink>
-                    </div>
-                </h:form>
-            </div>
+    <!-- Fuente moderna (CORREGIDA) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+
+
+    <style>
+        :root {
+            --primary: #5cc5bb;
+            --secondary: #4ea6de;
+            --accent: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #777;
+            --shadow: rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, #5cc5bb, #4ea6de 70%);
+            overflow: hidden;
+        }
+
+        /* Fondo animado suave */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+            animation: move-bg 10s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes move-bg {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-20px, 20px); }
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 70px;
+            padding: 50px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            backdrop-filter: blur(18px);
+            width: 900px;
+            z-index: 1;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Lottie */
+        .animation-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        dotlottie-wc {
+            width: 320px;
+            height: 320px;
+            background: transparent;
+        }
+
+        /* Card de login */
+        .card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;S
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin: 10px 0 5px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--secondary);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1),
+                        inset -2px -2px 5px rgba(255,255,255,0.8);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            background: rgba(255,255,255,0.9);
+            outline: none;
+            box-shadow: 0 0 8px rgba(78,166,222,0.4);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: translateY(-2px);
+        }
+
+        .extra-link {
+            margin-top: 15px;
+        }
+
+        .extra-link a {
+            font-size: 13px;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .extra-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                gap: 40px;
+                width: 90%;
+                padding: 30px;
+            }
+
+            dotlottie-wc {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+
+        <!-- Animación -->
+        <div class="animation-container">
+            <dotlottie-wc
+                src="https://lottie.host/747de779-da54-4b9b-bd98-7b6320c5515e/Xy9Dhosc4O.lottie"
+                autoplay="true"
+                loop="true"
+                style="background: transparent;">
+            </dotlottie-wc>
         </div>
-    </h:body>
 
+        <!-- Card Login -->
+        <div class="card">
+            <img src="#{request.contextPath}/resources/imagenes/Logo.png" alt="Logo"/>
+            <h2>Bienvenido de nuevo</h2>
+            <p>Accede a tu cuenta para continuar</p>
+
+            <h:form>
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <h:inputText value="#{login.nombreusuario}"
+                                 styleClass="input-field"
+                                 required="true"
+                                 
+                                 requiredMessage="El usuario es obligatorio" />
+                </div>
+
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <h:inputSecret value="#{login.contrasenna}"
+                                   styleClass="input-field"
+                                   required="true"
+                                   
+                                   requiredMessage="La contraseña es obligatoria" />
+                </div>
+
+                <h:commandButton value="Iniciar Sesión"
+                                 action="#{login.iniciarSesion()}"
+                                 styleClass="btn-login" />
+
+                <h:messages globalOnly="true" style="color:red; margin-top:10px;" />
+
+                <div class="extra-link">
+                    <h:outputLink value="#">¿Olvidaste tu contraseña?</h:outputLink>
+                </div>
+            </h:form>
+        </div>
+    </div>
+</h:body>
 </html>
