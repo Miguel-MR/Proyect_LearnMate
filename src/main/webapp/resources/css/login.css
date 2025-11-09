@@ -1,4 +1,4 @@
-   :root {
+:root {
             --primary: #5cc5bb;
             --secondary: #4ea6de;
             --accent: #ffffff;
@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-        /* Fondo animado suave */
+        /* Fondo animado */
         body::before {
             content: '';
             position: absolute;
@@ -38,6 +38,59 @@
             100% { transform: translate(-20px, 20px); }
         }
 
+        /* NAVBAR */
+        .navbar {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 40px;
+            z-index: 10;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .navbar-logo h1 {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: #eaf9ff;
+        }
+
+        /* Contenedor login */
         .container {
             position: relative;
             display: flex;
@@ -59,7 +112,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Lottie */
         .animation-container {
             flex: 1;
             display: flex;
@@ -73,16 +125,16 @@
             background: transparent;
         }
 
-        /* Card de login */
+        /* Card login */
         .card {
             flex: 1;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             text-align: center;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;S
+            transition: all 0.3s ease;
         }
 
         .card:hover {
@@ -111,18 +163,9 @@
             margin-bottom: 20px;
         }
 
-        .input-icon {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            font-size: 16px;
-            color: var(--secondary);
-        }
-
         .input-field {
             width: 100%;
-            padding: 12px 15px 12px 40px;
+            padding: 12px 15px;
             border-radius: 12px;
             border: none;
             background: rgba(255, 255, 255, 0.6);
@@ -181,5 +224,11 @@
             dotlottie-wc {
                 width: 220px;
                 height: 220px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }

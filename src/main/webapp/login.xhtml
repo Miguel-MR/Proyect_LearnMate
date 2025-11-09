@@ -8,63 +8,59 @@
 <h:head>
     <title>Login | Portal</title>
     <f:event type="preRenderView" listener="#{login.invalidarSesion()}" />
-
-    <!-- Fuente moderna (CORREGIDA) -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-
-    <!-- Lottie -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-    
     <link href="resources/css/login.css" rel="stylesheet" type="text/css"/>
 </h:head>
 
 <h:body>
-    <div class="container">
-
-        <!-- Animación -->
-        <div class="animation-container">
-            <dotlottie-wc
-                src="https://lottie.host/747de779-da54-4b9b-bd98-7b6320c5515e/Xy9Dhosc4O.lottie"
-                autoplay="true"
-                loop="true"
-                style="background: transparent;">
-            </dotlottie-wc>
-        </div>
-
-        <!-- Card Login -->
-        <div class="card">
+    <!-- Menú superior flotante -->
+     <div class="navbar">
+        <div class="navbar-logo">
             <img src="#{request.contextPath}/resources/imagenes/Logo.png" alt="Logo"/>
-            <h2>Bienvenido de nuevo</h2>
-            <p>Accede a tu cuenta para continuar</p>
+            <h1>LearnMate</h1>
+        </div>
+        <div class="navbar-links">
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Soporte</a>
+            <a href="#">Contacto</a>
+        </div>
+    </div>
+
+    <!-- Sección de login -->
+    <div class="container">
+        <dotlottie-wc
+            src="https://lottie.host/747de779-da54-4b9b-bd98-7b6320c5515e/Xy9Dhosc4O.lottie"
+            autoplay="true"
+            loop="true">
+        </dotlottie-wc>
+
+        <div class="card">
+           
+            <h2>Bienvenido</h2>
+            <p>Inicia sesión en tu cuenta</p>
 
             <h:form>
                 <div class="input-group">
-                    <span class="input-icon">👤</span>
                     <h:inputText value="#{login.nombreusuario}"
                                  styleClass="input-field"
                                  required="true"
-                                 
-                                 requiredMessage="El usuario es obligatorio" />
+                                 />
                 </div>
 
                 <div class="input-group">
-                    <span class="input-icon">🔒</span>
                     <h:inputSecret value="#{login.contrasenna}"
                                    styleClass="input-field"
                                    required="true"
-                                   
-                                   requiredMessage="La contraseña es obligatoria" />
+                                  />
                 </div>
 
                 <h:commandButton value="Iniciar Sesión"
                                  action="#{login.iniciarSesion()}"
-                                 styleClass="btn-login" />
+                                 styleClass="btn-login"/>
 
-                <h:messages globalOnly="true" style="color:red; margin-top:10px;" />
-
-                <div class="extra-link">
-                    <h:outputLink value="#">¿Olvidaste tu contraseña?</h:outputLink>
-                </div>
+                <h:messages globalOnly="true" style="color:red; margin-top:10px;"/>
             </h:form>
         </div>
     </div>
