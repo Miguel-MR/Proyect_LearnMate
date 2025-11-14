@@ -88,7 +88,7 @@ public class Login implements Serializable {
                     
                     // Rol administrador
                     if (rolId == 1) {
-                        return "views/inicio.xhtml?faces-redirect=true";
+                        return "views/dashborad.xhtml?faces-redirect=true";
                     }
                      // Rol Docente
                     if (rolId == 2) {
