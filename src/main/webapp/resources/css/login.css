@@ -69,8 +69,8 @@
         }
 
         .navbar-logo h1 {
-            font-size: 20px;
             color: white;
+            font-size: 22px;
             font-weight: 600;
         }
 
@@ -79,14 +79,14 @@
             gap: 25px;
         }
 
-        .navbar-links a {
+        .navbar-links a, .navbar-links h\\:link {
             color: white;
             text-decoration: none;
             font-weight: 500;
             transition: 0.3s;
         }
 
-        .navbar-links a:hover {
+        .navbar-links a:hover, .navbar-links h\\:link:hover {
             color: #eaf9ff;
         }
 

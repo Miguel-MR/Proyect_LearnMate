@@ -1,48 +1,315 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <h1>Contenido del sitio</h1>
-        <h2>Usuario conectado: #{login.usuario}</h2>
+        <title>Inicio - LearnMate</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+    <style>
+        /* ====== ESTILOS GLOBALES ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <f:view>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top left, #5cc5bb, #4ea6de 70%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        /* ====== NAVBAR ====== */
+    .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 15px 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            z-index: 1000;
+            
+  
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .navbar img {
+            height: 55px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            margin: 0 20px;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00f0ff;
+            transition: 0.3s ease;
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 160px;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        /* ====== TARJETAS ====== */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ====== SECCIONES ====== */
+        section {
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* ====== CONTACTO ====== */
+        .contact {
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 40px;
+            width: 60%;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            transition: transform 0.3s;
+        }
+
+        .contact:hover {
+            transform: translateY(-5px);
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #003b47;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 35px;
+            background: #00f0ff;
+            color: #003b47;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00c6e0;
+            transform: translateY(-3px);
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9em;
+            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* ====== ANIMACIONES ====== */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="navbar-logo">
+            <img src="resources/img/logo.png" alt="Logo"/>
+        </div>
+        <div class="navbar-links">
+            <a href="inicio.xhtml">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            
+            <a href="login.xhtml">Login</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero fade-in" id="inicio">
+        <h1>Bienvenido a <span style="color:#00f0ff;">LearnMate</span></h1>
+        <p>Explora una experiencia educativa digital moderna, interactiva y diseñada para impulsar tu aprendizaje.</p>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>📘 Cursos Dinámicos</h3>
+                <p>Aprende a tu ritmo con materiales interactivos y evaluaciones adaptativas.</p>
+            </div>
+            <div class="card">
+                <h3>🎓 Comunidad Activa</h3>
+                <p>Conecta con estudiantes y docentes para compartir conocimientos y experiencias.</p>
+            </div>
+            <div class="card">
+                <h3>📈 Seguimiento Personalizado</h3>
+                <p>Monitorea tu progreso y recibe retroalimentación en tiempo real.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <p>Potenciamos tu aprendizaje con herramientas inteligentes y soporte continuo.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>👨‍🏫 Tutorías Virtuales</h3>
+                <p>Sesiones en línea con instructores calificados para resolver tus dudas.</p>
+            </div>
+            <div class="card">
+                <h3>📊 Análisis de Rendimiento</h3>
+                <p>Estadísticas precisas sobre tu avance académico y áreas de mejora.</p>
+            </div>
+            <div class="card">
+                <h3>🌐 Recursos Globales</h3>
+                <p>Acceso a materiales educativos de universidades e instituciones internacionales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTOS -->
+    <section id="eventos">
+        <h2>Eventos Académicos</h2>
+        <p>Descubre nuestros próximos eventos, charlas y ferias educativas.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>🚀 Semana STEAM</h3>
+                <p>Experimenta la ciencia y la innovación con talleres prácticos.</p>
+            </div>
+            <div class="card">
+                <h3>💡 EduHack 2025</h3>
+                <p>Participa en el hackathon educativo más grande del año.</p>
+            </div>
+            <div class="card">
+                <h3>📚 ExpoEduc 2025</h3>
+                <p>Conoce proyectos destacados de estudiantes y docentes de todo el país.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOPORTE -->
+    <section id="soporte">
+        <h2>Soporte</h2>
+        <p>Estamos disponibles 24/7 para ayudarte con cualquier inconveniente técnico o académico.</p>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2>Contáctanos</h2>
+        <div class="contact fade-in">
             <h:form>
-                <h:commandButton value="Cerrar sesión" action="#{login.cerrarSesion}" />
-
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{controllerPersona.listarPersonas()}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.personaId}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.primerNombre}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="TipoDocumento"/>
-                        </f:facet>
-                        <h:outputText value="#{item.tipoDocumento}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="NumeroDocumento"/>
-                        </f:facet>
-                        <h:outputText value="#{item.identificacion}"/>
-                    </h:column>
-                </h:dataTable>
+                <h:inputText value="" required="true" />
+                <h:inputText value="" required="true" />
+                <h:inputTextarea value=""  />
+                <h:commandButton value="Enviar mensaje" action="#" style="background:#00f0ff; color:#003b47; font-weight:bold; border:none; border-radius:10px; padding:12px 25px;" />
             </h:form>
-        </f:view>
+        </div>
+    </section>
 
-    </h:body>
+    <!-- FOOTER -->
+    <footer>
+        © 2025 LearnMate. Todos los derechos reservados.
+    </footer>
+</h:body>
 </html>
