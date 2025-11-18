@@ -117,7 +117,7 @@ public class Login implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al iniciar sesión: " + e.getMessage(), null);
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al iniciar sesión: " , null);
             contexto.addMessage(null, fm);
             return null;
         }

@@ -10,6 +10,8 @@
         <f:event type="preRenderView" listener="#{login.invalidarSesion()}" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
         <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="#{request.contextPath}resources/js/alertas.js" type="text/javascript"></script>
         <link href="resources/css/login.css" rel="stylesheet" type="text/css"/>
     </h:head>
 
@@ -59,9 +61,25 @@
                                      action="#{login.iniciarSesion()}"
                                      styleClass="btn-login"/>
 
-                    <h:messages globalOnly="true" style="color:red; margin-top:10px;"/>
+                    
                 </h:form>
             </div>
         </div>
+        <h:panelGroup id="mensajesSwalTemp" rendered="#{not empty facesContext.messageList}">
+            <script>
+
+                Swal.fire({
+                    icon: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'success' : 'error'}",
+                    title: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'Éxito' : 'Error'}",
+                    text: "#{facesContext.messageList[0].summary}",
+                    confirmButtonColor: '#efb810'
+                }).then(function () {
+                    if (success) {
+                        window.location = "#{facesContext.externalContext.requestContextPath}login.xhtml";;
+                    }
+                });
+                ;
+            </script>
+        </h:panelGroup>
     </h:body>
 </html>

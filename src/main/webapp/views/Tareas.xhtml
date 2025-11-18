@@ -13,8 +13,8 @@
                 <div class="container-fluid">
                     <h1 class="all-tittles">Sistema escolar<small> Evaluación y seguimiento</small></h1>
                     <ul class="nav nav-tabs nav-justified" >
-                        <li class="active"><a href="evidencias.html">Creación de Actividades</a></li>
-                        <li><a href="Curso.xhtml">Actividades Asignadas</a></li>
+                        <li class="active"><a href="Tareas.xhtml">Creación de Actividades</a></li>
+                        <li><a href="Asignacion.xhtml">Actividades Asignadas</a></li>
                         <li><a href="asistencia.html">Asistencia</a></li>
                     </ul>
                     <div class="container-fluid"  style="margin: 50px 0;">
@@ -106,18 +106,18 @@
 
                     <script type="text/javascript">
                         (() => {
-                            'use strict'
-                            const forms = document.querySelectorAll('.needs-validation')
+                            'use strict';
+                            const forms = document.querySelectorAll('.needs-validation');
                             Array.from(forms).forEach(form => {
                                 form.addEventListener('submit', event => {
                                     if (!form.checkValidity()) {
-                                        event.preventDefault()
-                                        event.stopPropagation()
+                                        event.preventDefault();
+                                        event.stopPropagation();
                                     }
-                                    form.classList.add('was-validated')
-                                }, false)
-                            })
-                        })()
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        })();
                     </script>
                 </div>
             </ui:define>

@@ -10,13 +10,12 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="#{request.contextPath}/resources/imagenes/Logo.png"/>  
-        <script src="#{request.contextPath}/resources/js/sweet-alert.min.js" type="text/javascript"></script>
-        <link href="#{request.contextPath}/resources/css/sweet-alert.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/resources/css/material-design-iconic-font.min.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/resources/css/normalize.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/resources/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
         <link href="#{request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!--  <script>
@@ -125,6 +124,18 @@
                 color: #6c757d;
                 margin: 0;
             }
+
+            /* 🔥 ELIMINA MENSAJES AZULES DE JSF */
+            .ui-messages,
+            .ui-messages-info,
+            .ui-messages-warn,
+            .ui-messages-error,
+            .ui-messages-fatal,
+            .ui-message {
+                display: none !important;
+            }
+
+
         </style>
     </h:head>
 
@@ -160,7 +171,7 @@
                                         <i class="zmdi zmdi-map zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Mapa  
                                     </h:link>
                                 </li>
-                                
+
                                 <li style="margin-bottom: 8px;">
                                     <div class="dropdown-menu-button" style="display: flex; align-items: center; padding: 10px 20px; border-radius: 6px; color: #fff; font-weight: 500; cursor: pointer; background: transparent; transition: background 0.2s;">
                                         <i class="zmdi zmdi-account-add zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Gestión de usuarios
@@ -177,11 +188,7 @@
                                                 <i class="zmdi zmdi-book zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Listar usuarios
                                             </h:link>
                                         </li>
-                                        <li>
-                                            <h:link outcome="/views/listCursos" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
-                                                <i class="zmdi zmdi-book zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Listar cursos
-                                            </h:link>
-                                        </li>
+
                                     </ul>
                                 </li>
                                 <li>
@@ -299,6 +306,19 @@
             </footer>
 
         </div>
+
+        <h:panelGroup id="mensaje" rendered="#{not empty facesContext.messageList}">
+            <script>
+
+                Swal.fire({
+                    icon: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'success' : 'error'}",
+                    title: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'Éxito' : 'Error'}",
+                    text: "#{facesContext.messageList[0].summary}",
+                    confirmButtonColor: '#efb810'
+                })
+                        ;
+            </script>
+        </h:panelGroup>
 
 
 
