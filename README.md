@@ -46,3 +46,11 @@ Centraliza los procesos académicos y administrativos, fomentando la transparenc
 
 ---
 
+## 🧑‍💻 Desarrollado por:
+- Yeison Fonseca
+- Juan Gomez 
+- Hanson Guevara
+- Miguel Roncancio
+---
+
+
