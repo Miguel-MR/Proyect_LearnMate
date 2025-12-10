@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./TemplateSitio.xhtml">
+
+            <ui:define name="content">
+
+                <div class="container-fluid">
+
+                    <h1 class="all-tittles">
+                        Sistema escolar <small> Evaluación y seguimiento</small>
+                    </h1>
+
+                    <ul class="nav nav-tabs nav-justified">
+                        <li><a href="Tareas.xhtml">Creación de Actividades</a></li>
+                        <li class="active"><a href="Asignacion.xhtml">Actividades Asignadas</a></li>                    
+                    </ul>
+
+                    <div class="container-fluid" style="margin: 50px 0;">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                <img src="../resources/assets/img/testing.png" alt="calendar"
+                                     class="img-responsive center-box" style="max-width: 110px;"/>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                                Bienvenido a esta sección, aquí podrá crear y asignar actividades,
+                                a cursos y estudiantes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FORMULARIO ÚNICO CORRECTO -->
+                    <h:form id="formAsignacion" class="row g-3 needs-validation">
+
+                        <!-- =============================
+                             SELECT DE DOCENTE
+                        ============================== -->
+                        <div class="col-md-4">
+                            <div class="group-material">
+                                <h:outputLabel for="Docente" value="Docente:"
+                                               style="display:block; position:relative; z-index:2;
+                                               background:#fff; padding-right:8px; left:8px; top:8px; width:auto;" />
+
+                                <h:selectOneMenu id="Docente"
+                                                 value="#{controllerAsignacion.persona.personaId}"
+                                                 required="true"
+                                                 requiredMessage="Seleccione el Docente.."
+                                                 styleClass="material-control tooltips-general"
+                                                 style="position:relative; z-index:1;">
+
+                                    <f:selectItems value="#{controllerAsignacion.listarPP()}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <!-- =============================
+                             SELECT DE CURSO
+                        ============================== -->
+                        <div class="col-md-4">
+                            <div class="group-material">
+
+                                <h:outputLabel for="Curso" value="Curso:"
+                                               style="display:block; position:relative; z-index:2;
+                                               background:#fff; padding-right:8px; left:8px; top:8px; width:auto;" />
+
+                                <h:selectOneMenu id="Curso"
+                                                 value="#{controllerAsignacion.cur.cursoId}"
+                                                 required="true"
+                                                 requiredMessage="Seleccione el Curso.."
+                                                 styleClass="material-control tooltips-general"
+                                                 style="position:relative; z-index:1;">
+                                    <f:selectItems value="#{controllerAsignacion.listarCursos()}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <!-- =============================
+                             SELECT DE MATERIA
+                        ============================== -->
+                        <div class="col-md-4">
+                            <div class="group-material">
+                                <h:outputLabel for="Materia" value="Materia:"
+                                               style="display:block; position:relative; z-index:2;
+                                               background:#fff; padding-right:8px; left:8px; top:8px; width:auto;" />
+
+                                <h:selectOneMenu id="Materia"
+                                                 value="#{controllerAsignacion.mat.asignaturaId}"
+                                                 required="true"
+                                                 requiredMessage="Seleccione la materia.."
+                                                 styleClass="material-control tooltips-general"
+                                                 style="position:relative; z-index:1;">
+                                    <f:selectItems value="#{controllerAsignacion.listarMateria()}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <!-- BOTÓN DE ENVÍO -->
+                        <div class="col-md-4" style="margin-top:20px;">
+                            <h:commandButton value="Enviar"
+                                             action="#{controllerAsignacion.crearAsignacion()}"
+                                             class="btn btn-primary" />
+                        </div>
+                        
+                        
+                        <h:dataTable value="#{controllerAsignacion.listaAsig()}"
+                                     var="item"
+                                     styleClass="jsf-data-tables table table-striped " 
+                                     headerClass="table-header">
+
+                            <h:column>
+                                <f:facet name="header">Nombres</f:facet>
+                                <h:outputText value="#{item.getProfesorId().getPersona().getPrimerNombre()}#{item.getProfesorId().getPersona().getSegundoNombre()} " />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Apellidos</f:facet>
+                                <h:outputText value="#{item.getProfesorId().getPersona().getPrimerApellido()} #{item.getProfesorId().getPersona().getSegundoApellido()}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tipo de documento</f:facet>
+                                <h:outputText value="#{item.getProfesorId().getPersona().getTipoDocumento()}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">documento</f:facet>
+                                <h:outputText value="#{item.getProfesorId().getPersona().getIdentificacion()}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Rol</f:facet>                         
+                                <h:outputText value="Profesor"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Curso</f:facet>                         
+                                <h:outputText value="#{item.getCursoId().getNombreCurso()}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Materia</f:facet>                         
+                                <h:outputText value="#{item.getAsignaturaId().getNombreAsignatura()}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Asignacion</f:facet>                         
+                                <h:outputText value="#{item.getAsignacionId()}"/>
+                            </h:column>
+                            
+
+                            
+
+                        </h:dataTable>
+
+                    </h:form>
+
+                    <!-- MODAL DE AYUDA (NO SE TOCA) -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title text-center all-tittles">
+                                        Ayuda del sistema
+                                    </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    En esta pantalla podrás visualizar el promedio de tus indicadores
+                                    de rendimiento en base a tus calificaciones evaluadas por los
+                                    docentes, separados por asignatura.
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        <i class="zmdi zmdi-thumb-up"></i> &nbsp; De acuerdo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VALIDACIÓN FRONTEND -->
+                    <script type="text/javascript">
+                        (() => {
+                            'use strict';
+                            const forms = document.querySelectorAll('.needs-validation');
+                            Array.from(forms).forEach(form => {
+                                form.addEventListener('submit', event => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        })();
+                    </script>
+
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

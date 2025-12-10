@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>Inicio</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="#{request.contextPath}/resources/imagenes/Logo.png"/>  
+        <script src="#{request.contextPath}/resources/js/sweet-alert.min.js" type="text/javascript"></script>
+        <link href="#{request.contextPath}/resources/css/sweet-alert.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/material-design-iconic-font.min.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/normalize.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!--  <script>
+            !window.jQuery || document.write('<script src="#{request.contextPath}/resources/js/jquery-1.11.2.min.js"><\/script>')     
+        </script>-->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css"/>
+        <!-- DataTables JS y extensiones de botones -->
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="#{request.contextPath}/resources/js/modernizr.js" type="text/javascript"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
+        <script src="#{request.contextPath}/resources/js/main.js" type="text/javascript"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+            .sidebar {
+                width: 250px;
+                background-color: #343a40;
+                color: #fff;
+                height: 100vh;
+                padding-top: 20px;
+            }
+            .sidebar h2 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+            .sidebar ul li {
+                padding: 15px;
+                text-align: center;
+                border-bottom: 1px solid #474f57;
+            }
+            .sidebar ul li a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+            }
+            .sidebar ul li a:hover {
+                background-color: #495057;
+            }
+            .main-content {
+                flex: 1;
+                padding: 20px;
+            }
+            .header {
+                background-color: #fff;
+                padding: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .header .logo {
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .header .user-info {
+                display: flex;
+                align-items: center;
+            }
+            .header .user-info img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            .card {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            .card i {
+                font-size: 40px;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
+            .card h3 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .card p {
+                color: #6c757d;
+                margin: 0;
+            }
+        </style>
+    </h:head>
+
+    <h:body> 
+
+        <!--barra de navegación izquierda -->
+        <div id="left">
+            <ui:insert name="left">
+                <div class="navbar-lateral full-reset">
+                    <div class="visible-xs font-movile-menu mobile-menu-button"></div>
+                    <div class="full-reset container-menu-movile nav-lateral-scroll">
+                        <div class="logo full-reset all-tittles">
+                            <i class="visible-xs zmdi zmdi-close pull-left mobile-menu-button" style="line-height: 55px; cursor: pointer; padding: 0 10px; margin-left: 7px;"></i> 
+                            LearnMate
+                        </div>
+                        <div class="nav-lateral-divider full-reset"></div>
+                        <div class="full-reset" style="padding: 10px 0; color:#fff;">
+                            <figure>
+                                <img src="#{request.contextPath}/resources/imagenes/Logo.png" alt="Biblioteca" class="img-responsive center-box" style="width:40%;"/>
+                            </figure>
+                            <p class="text-center" style="padding-top: 15px;">LearnMate</p>
+                        </div>
+                        <div class="nav-lateral-divider full-reset"></div>
+                        <div class="full-reset nav-lateral-list-menu">
+                            <ul class="list-unstyled">
+
+                                <li>
+                                    <h:link outcome="Docente.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                        <i class="zmdi zmdi-badge-check" style="font-size: 20px; margin-right: 10px;"></i>Cuadro de Honor
+                                    </h:link>
+                                </li>
+
+
+                                <li style="margin-bottom: 8px;">
+                                    <div class="dropdown-menu-button" style="display: flex; align-items: center; padding: 10px 20px; border-radius: 6px; color: #fff; font-weight: 500; cursor: pointer; background: transparent; transition: background 0.2s;">
+                                        <i class="zmdi zmdi-assignment-o zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Evaluación y seguimiento
+                                        <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw icon-sub-menu" style="margin-left:auto;"></i>
+                                    </div>
+                                    <ul class="list-unstyled" style="margin:0 0 0 4px; padding:0;">
+                                        <li>
+                                            <h:link outcome="Tareas.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                                <i class="zmdi zmdi-book zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Agregar entregables
+                                            </h:link>
+                                        </li>
+                                        <li>
+                                            <h:link outcome="Asignacion.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                                <i class="zmdi zmdi-bookmark-outline zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Asignaciòn
+                                            </h:link>
+                                        </li>
+
+                                    </ul>
+                                </li>                                
+
+                                <li>
+                                    <li style="margin-bottom: 8px;">
+                                        <div class="dropdown-menu-button" style="display: flex; align-items: center; padding: 10px 20px; border-radius: 6px; color: #fff; font-weight: 500; cursor: pointer; background: transparent; transition: background 0.2s;">
+                                            <i class="zmdi zmdi-alarm zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Gestion de Notificaciones
+                                            <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw icon-sub-menu" style="margin-left:auto;"></i>
+                                        </div>
+                                        <ul class="list-unstyled" style="margin:0 0 0 4px; padding:0;">
+                                            <li>
+                                                <h:link outcome="notificaciones_1.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                                    <i class="zmdi zmdi-calendar zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Añadir Notificación
+                                                </h:link>
+
+                                            </li>
+                                            <li>
+                                                <h:link outcome="listaNotif.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                                    <i class="zmdi zmdi-calendar zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Lista Notificaciones
+                                                </h:link>
+                                            </li>
+
+                                        </ul>
+                                    </li>                                  
+                                </li>  
+                                <li>
+                                    <h:link outcome="reportes.xhtml" style="display: flex; align-items: center; padding: 8px 20px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 400; background: #34495e; margin-top: 4px;">
+                                        <i class="zmdi zmdi-trending-up zmdi-hc-fw" style="font-size: 20px; margin-right: 10px;"></i>Reportes y estadísticas
+                                    </h:link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </ui:insert>
+        </div>
+        <!--Fin barra de navegación izquierda -->
+        <div class="content-page-container full-reset custom-scroll-containers">
+            <!-- TOP BAR -->
+            <div id="top" class="top">
+                <ui:insert name="top">
+                    <nav class="navbar-user-top full-reset">
+                        <ul class="list-unstyled full-reset">
+                            <figure>
+                                <img src="#{request.contextPath}/resources/assets/img/user01.png" alt="user-picture" class="img-responsive img-circle center-box"/>
+                            </figure>
+                            <li style="color:#fff; cursor:default;">
+                                <text>Bienvenido:</text>
+                                <span class="all-tittles">#{login.nombreusuario}</span>
+                            </li>
+                            <li class="tooltips-general exit-system-button" data-href="#{application.contextPath}/login.xhtml" data-placement="bottom"
+                                title="Salir del sistema">
+                                <i class="zmdi zmdi-power"></i>
+                            </li>
+                            <li class="mobile-menu-button visible-xs" style="float: left !important;">
+                                <i class="zmdi zmdi-menu"></i>
+                            </li>
+                            <li class="desktop-menu-button hidden-xs" style="float: left !important;">
+                                <i class="zmdi zmdi-swap"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                </ui:insert>
+            </div>
+
+            <!-- TOP BAR FIN -->
+
+            <div id="main-content" class="main-content">
+                <ui:insert name="content">
+
+                    <style>
+                        /* ==== CUADRO DE HONOR ==== */
+                        #cuadro-honor {
+                            animation: fadeIn 1.5s ease-in-out;
+                        }
+
+                        @keyframes fadeIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(20px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+
+                        /* Estilo del título del top 3 */
+                        .honor-title {
+                            color: #000000;
+                            font-weight: 700;
+                            text-align: center;
+                            margin-bottom: 30px;
+                        }
+
+                        /* ==== FILA DE LOS 3 MEJORES ==== */
+                        .top3-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: flex-start;
+                            gap: 50px;
+                            flex-wrap: wrap;
+                            background: linear-gradient(135deg, #8597ab, #8597ab);
+                            border-radius: 15px;
+                            padding: 40px 20px;
+                            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                        }
+
+                        .top3-item {
+                            text-align: center;
+                            transition: transform 0.4s ease, box-shadow 0.4s ease;
+                        }
+
+                        .top3-item:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                        }
+
+                        .top3-item img {
+                            width: 180px;
+                            height: 180px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                            border: 5px solid #d4af37;
+                            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                            margin-bottom: 15px;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .top3-item img:hover {
+                            transform: scale(1.05);
+                        }
+
+                        .gold-text {
+                            color: #ffffff;
+                            font-weight: 700;
+                        }
+
+                        .student-card {
+                            background: #fff;
+                            border-radius: 15px;
+                            padding: 25px;
+                            text-align: center;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                            transition: transform 0.4s ease, box-shadow 0.4s ease;
+                            animation: slideUp 1s ease;
+                        }
+
+                        .student-card:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+                        }
+
+                        .student-card img {
+                            border-radius: 50%;
+                            border: 3px solid #42495c;
+                            margin-bottom: 10px;
+                            width: 100px;
+                            height: 100px;
+                            object-fit: cover;
+                        }
+
+                        .student-card h5 {
+                            color: #1a237e;
+                            font-weight: 600;
+                        }
+
+                        .student-card p {
+                            color: #555;
+                            margin: 0;
+                        }
+
+                        @keyframes slideUp {
+                            from {
+                                transform: translateY(30px);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: translateY(0);
+                                opacity: 1;
+                            }
+                        }
+                        /* ============================
+       APLICAR EL COLOR DEL TEMA
+       ============================ */
+
+                        /* Fondo principal del contenedor top 3 */
+                        .top3-container {
+                            background: linear-gradient(135deg, #395886, #4fa3a5) !important;
+                        }
+
+
+
+                        /* Texto dorado (primeros 3 puestos) */
+                        .gold-text {
+                            color: #ffffff !important;
+                        }
+
+                        /* Tarjetas de estudiantes destacados */
+                        .student-card {
+                            border-top: 4px solid #4fa3a5 !important;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+                        }
+
+                        /* Bordes de fotos del top 3 */
+                        .top3-item img {
+                            border-color: #ffffff !important;
+                        }
+
+                        /* Quitar fondo blanco del contenedor general si quieres que todo combine */
+                        #cuadro-honor {
+                            background: transparent !important;
+                        }
+
+                    </style>
+
+                    <section id="cuadro-honor" class="container mt-5">
+                        <h2 class="honor-title" >Cuadro de Honor - Mejores Estudiantes</h2>
+
+                        <!-- 3 mejores en una sola fila -->
+                        <div class="top3-container">
+                            <div class="top3-item">
+                                <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 1"/>
+                                <h3 class="gold-text">1° Lugar - Ana Torres</h3>
+                                <p>Grado 11° • Promedio: 4.9</p>
+                            </div>
+                            <div class="top3-item">
+                                <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 2"/>
+                                <h3 class="gold-text">2° Lugar - Maicol Gómez</h3>
+                                <p>Grado 10° • Promedio: 4.8</p>
+                            </div>
+                            <div class="top3-item">
+                                <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 3"/>
+                                <h3 class="gold-text">3° Lugar - María López</h3>
+                                <p>Grado 9° • Promedio: 4.7</p>
+                            </div>
+                        </div>
+
+                        <!-- Otros destacados -->
+                        <h4 class="text-center mb-4 mt-5" style="color:#1a237e;">🎓 Otros Estudiantes Destacados</h4>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-4">
+                                <div class="student-card">
+                                    <img src="#{request.contextPath}/resources/imagenes/Deisy.jpg" alt="Estudiante 4"/>
+                                    <h5>Camila Ríos</h5>
+                                    <p>Grado 11° • Promedio: 4.6</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="student-card">
+                                    <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 5"/>
+                                    <h5>Juan Pérez</h5>
+                                    <p>Grado 10° • Promedio: 4.5</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="student-card">
+                                    <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 6"/>
+                                    <h5>Daniela Martínez</h5>
+                                    <p>Grado 9° • Promedio: 4.5</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="student-card">
+                                    <img src="#{request.contextPath}/resources/imagenes/Maikol.jpg" alt="Estudiante 7"/>
+                                    <h5>Mateo Herrera</h5>
+                                    <p>Grado 8° • Promedio: 4.4</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </ui:insert>
+            </div>
+            <!-- Form section -->
+
+            <!-- Footer -->
+            <footer class="footer full-reset">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <h4 class="all-tittles">Acerca de</h4>
+                            <p>
+                                Sistema de seguimiento a los estudiantes que facilita la visualización de la información del
+                                rendimiento académico y de esta manera promueve la comunicación efectiva entre los docentes,
+                                acudientes, estudiantes y administrativos.
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <h4 class="all-tittles">Desarrollado por</h4>
+                            <ul class="list-unstyled">
+                                <li><i class="zmdi zmdi-check zmdi-hc-fw"></i> Futuros Desarrolladores del SENA 
+                                    <i class="zmdi zmdi-facebook zmdi-hc-fw footer-social"></i>
+                                    <i class="zmdi zmdi-twitter zmdi-hc-fw footer-social"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright full-reset all-tittles">© 2024 LearnMate</div>
+            </footer>
+
+        </div>
+
+
+
+    </h:body>
+
+</html>

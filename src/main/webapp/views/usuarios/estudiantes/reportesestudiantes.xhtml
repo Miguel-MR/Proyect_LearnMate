@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./estudiantes.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li role="presentation" class="active"><a href="#statistics" aria-controls="statistics" role="tab" data-toggle="tab">Estadísticas</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- Estadísticas -->
+                        <div role="tabpanel" class="tab-pane fade in active" id="statistics">                 
+                            <div class="container-fluid"  style="margin: 50px 0;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-3">
+                                        <img src="../../../resources/assets/img/pdf.png" alt="pdf" class="img-responsive center-box" style="max-width: 120px;"/>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                                        Bienvenido al área de reportes, aquí podrás consultar y descargar el boletín del resultado académico por periodos en formato Pdf. <br>
+                                        </br> <a href="boletin.xhtml" style="--i:0;">Descargar boletín</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fichas vacías -->
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="page-header">
+                                        <h2 class="all-tittles">fichas <small>vacías</small></h2>
+                                    </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-file-text zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Ficha estudiante</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-file-text zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Ficha docente</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-file-text zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Ficha personal administrativo</h3>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="page-header">
+                                        <h2 class="all-tittles">reportes <small>generales</small></h2>
+                                    </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-trending-up zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Reporte General</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-trending-up zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Reporte por Categoría</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-trending-up zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Reporte por curso</h3>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="page-header">
+                                        <h2 class="all-tittles">reportes <small> pendientes</small></h2>
+                                    </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-calendar-close zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Docentes</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-calendar-close zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Personal Administrativo</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="full-reset report-content">
+                                                <p class="text-center">
+                                                    <i class="zmdi zmdi-calendar-close zmdi-hc-5x"></i>
+                                                </p>
+                                                <h3 class="text-center">Estudiantes</h3>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

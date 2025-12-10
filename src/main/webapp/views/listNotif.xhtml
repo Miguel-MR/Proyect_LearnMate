@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplateSitio.xhtml">
+
+            <ui:define name="content">
+
+                <style>
+                    /* Estilo general tabla */
+                    .lm-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 25px;
+                        background: #ffffff;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+                    }
+
+                    .lm-table th {
+                        background: #395886;
+                        color: white;
+                        padding: 12px;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+
+                    .lm-table td {
+                        padding: 10px;
+                        text-align: center;
+                        border-bottom: 1px solid #e6e6e6;
+                    }
+
+                    .lm-table tr:hover {
+                        background: #f2f7ff;
+                    }
+
+                    :root {
+    --lm-gradient: linear-gradient(135deg, #395886, #4fa3a5);
+    --lm-text-light: #ffffff;
+}
+
+.lm-btn {
+    background: var(--lm-gradient);
+    color: var(--lm-text-light);
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none !important;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.lm-btn:hover {
+    filter: brightness(1.15);
+}
+
+.lm-btn-danger {
+    background: #d9534f !important;
+    color: #fff !important;
+}
+
+.lm-btn-danger:hover {
+    background: #c9302c !important;
+}
+
+                </style>
+
+                <div class="container">
+                    <div class="page-header">
+                        <h1 class="all-tittles">Sistema institucional <small>Lista Notificaciones</small></h1>
+                    </div>
+                </div>
+
+                <div class="container-fluid" style="margin: 50px 0;">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            <img src="../resources/assets/img/chat.png"
+                                 alt="notificaciones"
+                                 class="img-responsive center-box"
+                                 style="max-width: 120px;"/>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                            Bienvenido a la sección para ver todas las notificaciones creadas.
+                        </div>
+                    </div>
+                </div>
+
+                <h:form>
+
+                    <h:dataTable value="#{controllerNotificacion.ListarNotificaciones()}"
+                                 var="item"
+                                 styleClass="lm-table">
+
+                        <h:column>
+                            <f:facet name="header">#</f:facet>
+                            <h:outputText value="#{item.notificacionId}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Notificación</f:facet>
+                            <h:outputText value="#{item.nombreNotificacion}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Categoría</f:facet>
+                            <h:outputText value="#{item.categoriaNotificacion}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Creación</f:facet>
+                            <h:outputText value="#{item.fechaCreacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+                            </h:outputText>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Asunto</f:facet>
+                            <h:outputText value="#{item.asunto}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{item.descripcion}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Fecha Notificación</f:facet>
+                            <h:outputText value="#{item.fechaNotificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+                            </h:outputText>
+                        </h:column>
+
+                        <!-- ACCIONES -->
+                        <!-- COLUMNA EDITAR -->
+                        <h:column>
+                            <f:facet name="header">Editar</f:facet>
+
+                            <h:button outcome="/views/notificaciones.xhtml"
+                                      styleClass="lm-btn"
+                                      value="Editar">
+                                <f:param name="notificacionId" value="#{item.notificacionId}" />
+                            </h:button>
+
+                        </h:column>
+
+                        <!-- COLUMNA ELIMINAR -->
+                        <h:column>
+                            <f:facet name="header">Eliminar</f:facet>
+
+                            <h:commandButton value="Eliminar"
+                                             action="#{controllerNotificacion.eliminar(item)}"
+                                             onclick="return confirm('¿Seguro que deseas eliminar esta notificación?');"
+                                             styleClass="lm-btn lm-btn-danger" />
+
+                        </h:column>
+
+
+                    </h:dataTable>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

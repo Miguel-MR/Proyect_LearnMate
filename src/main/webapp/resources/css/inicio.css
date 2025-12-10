@@ -1,0 +1,208 @@
+/* ====== ESTILOS GLOBALES ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top left, #5cc5bb, #4ea6de 70%);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.navbar img {
+    height: 55px;
+    border-radius: 50%;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 20px;
+    position: relative;
+    transition: 0.3s;
+}
+.navbar-links a:hover {
+    color: #00f0ff;
+}
+
+/* ====== HERO ====== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 160px;
+}
+
+.hero-img {
+    width: 70%;
+    max-width: 750px;
+    margin-top: 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+/* ====== TARJETAS ====== */
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* ====== SECCIONES ====== */
+section {
+    padding: 120px 10%;
+    text-align: center;
+}
+section h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+/* CONTACTO */
+#contacto {
+    padding: 60px 20px;
+
+    text-align: center;
+}
+
+#contacto h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+    color: white;
+    font-weight: 700;
+}
+
+/* Contenedor */
+.contact-box {
+    max-width: 650px;
+    margin: auto;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: radial-gradient(circle at top left, #5cc5bb, #4ea6de 70%);
+    text-align: left;
+}
+
+/* Inputs */
+.contact-field {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid #c9d6ff;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-field:focus {
+    border-color: #395886;
+    box-shadow: 0 0 6px rgba(57, 88, 134, 0.3);
+}
+
+/* Textarea */
+.contact-textarea {
+    height: 130px;
+    resize: none;
+}
+
+/* Botón */
+.btn-contact {
+    width: 100%;
+    padding: 14px;
+    background: radial-gradient(circle at top left, #5cc5bb, #4ea6de 70%);
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.btn-contact:hover {
+    background: linear-gradient(135deg, #2d4468, #3d6ca3);
+    transform: translateY(-2px);
+}
+
+/* Animación suave */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #contacto h2 {
+        font-size: 26px;
+    }
+    .contact-box {
+        padding: 25px;
+    }
+}
+
+
+/* ====== FOOTER ====== */
+footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 0.9em;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.15);
+}

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>Inicio - LearnMate</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&mbp;display=swap" rel="stylesheet"/>
+        <link href="resources/css/inicio.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="#{request.contextPath}/resources/imagenes/Logo.png"/>  
+    </h:head>
+
+    <h:body>
+
+        <!-- NAVBAR -->
+        <div class="navbar">
+            <img src="resources/assets/icons/logo.png" alt="Logo"/>
+            <div class="navbar-links">
+                <a href="inicio.xhtml">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="login.xhtml">Login</a>
+            </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="hero fade-in" id="inicio">
+            <h1>Bienvenido a <span style="color:#00f0ff;">LearnMate</span></h1>
+            <p>Explora una experiencia educativa moderna e interactiva.</p>
+
+            <img class="hero-img" 
+                 src="resources/assets/img/learnmate.jpg"          
+                 alt="Aprendizaje moderno"/>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <p>Impulsamos tu aprendizaje con herramientas inteligentes.</p>
+
+            <div class="card-container">
+
+                <div class="card">
+                    <img src="resources/assets/img/curso.jpg" alt="Cursos"/>
+                    <h3>Cursos Dinámicos</h3>
+                    <p>Aprende a tu ritmo con materiales interactivos.</p>
+                </div>
+
+                <div class="card">
+
+                    <img src="resources/assets/img/comunidad.jpg" alt="Comunidad"/>
+                    <h3>Comunidad Activa</h3>
+                    <p>Conecta con estudiantes y docentes de todo el país.</p>
+                </div>
+
+                <div class="card">
+                    <img src="resources/assets/img/seguimiento.jpg" alt="Seguimiento"/>
+                    <h3>Seguimiento Personal</h3>
+                    <p>Obtén métricas en tiempo real sobre tu progreso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTOS -->
+        <section id="eventos">
+            <h2>Eventos Académicos</h2>
+            <p>Charlas, ferias y actividades que potencian tu aprendizaje.</p>
+
+            <div class="card-container">
+
+                <div class="card">
+                    <img src="resources/assets/img/evento1.jpg" alt="STEAM"/>
+                    <h3>Semana STEAM</h3>
+                    <p>Talleres innovadores y experimentos prácticos.</p>
+                </div>
+
+                <div class="card">
+                    <img src="resources/assets/img/evento2.jpg" alt="Hackathon"/>
+                    <h3>EduHack 2025</h3>
+                    <p>El hackathon educativo más grande del país.</p>
+                </div>
+
+                <div class="card">
+                    <img src="resources/assets/img/evento3.jpg" alt="ExpoEduc"/>
+                    <h3>ExpoEduc 2025</h3>
+                    <p>Proyectos destacados de estudiantes y docentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+
+            <div class="contact-box fade-in">
+                <h:form>
+
+                    <h:inputText value="#{contacto.nombre}"
+                                 required="true"
+                                 styleClass="contact-field"
+                                 />
+
+                    <h:inputText value="#{contacto.correo}"
+                                 required="true"
+                                 styleClass="contact-field"
+                                 />
+
+                    <h:inputTextarea value="#{contacto.mensaje}"
+                                     styleClass="contact-field contact-textarea"
+                                     />
+
+                    <h:commandButton value="Enviar Mensaje"
+                                     action="#{contacto.enviar()}"
+                                     styleClass="btn-contact" />
+
+                </h:form>
+            </div>
+        </section>
+
+        <footer>
+            © 2025 LearnMate. Todos los derechos reservados.
+        </footer>
+
+    </h:body>
+</html>

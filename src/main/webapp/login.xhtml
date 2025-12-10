@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Login | Portal</title>
+        <f:event type="preRenderView" listener="#{login.invalidarSesion()}" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+        <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="#{request.contextPath}resources/js/alertas.js" type="text/javascript"></script>
+        <link href="resources/css/login.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="#{request.contextPath}/resources/imagenes/Logo.png"/>  
+    </h:head>
+
+    <h:body>
+        <!-- Menú superior flotante -->
+        <div class="navbar">
+            <div class="navbar-logo">
+                <img src="#{request.contextPath}/resources/imagenes/Logo.png" alt="Logo"/>
+                <h1>LearnMate</h1>
+            </div>
+            <div class="navbar-links">
+                <h:link value="Inicio" outcome="/inicio.xhtml"/>
+                <h:link value="Eventos" outcome="/inicio.xhtml#eventos"/>
+                <h:link value="Login" outcome="/login.xhtml"/>
+            </div>
+        </div>
+
+        <!-- Sección de login -->
+        <div class="container">
+            <dotlottie-wc
+                src="https://lottie.host/747de779-da54-4b9b-bd98-7b6320c5515e/Xy9Dhosc4O.lottie"
+                autoplay="true"
+                loop="true">
+            </dotlottie-wc>
+
+            <div class="card">
+
+                <h2>Bienvenido</h2>
+                <p>Inicia sesión en tu cuenta</p>
+
+                <h:form>
+                    <div class="input-group">
+                        <h:inputText value="#{login.nombreusuario}"
+                                     styleClass="input-field"
+                                     required="true"
+                                     />
+                    </div>
+
+                    <div class="input-group">
+                        <h:inputSecret value="#{login.contrasenna}"
+                                       styleClass="input-field"
+                                       required="true"
+                                       />
+                    </div>
+
+                    <h:commandButton value="Iniciar Sesión"
+                                     action="#{login.iniciarSesion()}"
+                                     styleClass="btn-login"/>
+
+                    
+                </h:form>
+            </div>
+        </div>
+        <h:panelGroup id="mensajesSwalTemp" rendered="#{not empty facesContext.messageList}">
+            <script>
+
+                Swal.fire({
+                    icon: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'success' : 'error'}",
+                    title: "#{facesContext.maximumSeverity.ordinal eq 0 ? 'Éxito' : 'Error'}",
+                    text: "#{facesContext.messageList[0].summary}",
+                    confirmButtonColor: '#efb810'
+                }).then(function () {
+                    if (success) {
+                        window.location = "#{facesContext.externalContext.requestContextPath}login.xhtml";;
+                    }
+                });
+                ;
+            </script>
+        </h:panelGroup>
+    </h:body>
+</html>

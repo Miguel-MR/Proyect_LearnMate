@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./Docente.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <h1 class="all-tittles">Sistema escolar<small> Evaluación y seguimiento</small></h1>
+                    <ul class="nav nav-tabs nav-justified" >
+                        <li class="active"><a href="Tareas.xhtml">Creación de Actividades</a></li>
+                        <li><a href="Asignacion.xhtml">Actividades Asignadas</a></li>
+                    </ul>
+                    <div class="container-fluid"  style="margin: 50px 0;">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                <img src="../../../resources/assets/img/testing.png" alt="calendar" class="img-responsive center-box" style="max-width: 110px;"/>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                                Bienvenido a esta sección, aquí podra crear y asignar actividades, a cursos y estudiantes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <h:form class="row g-3 needs-validation" >
+                            <div class="col-md-4">
+                                <label for="validationCustom01" class="form-label">Titulo de actividad</label>
+                                <h:inputText class="form-control" id="validationCustom01" value="#{contollerActividad.ta.titulo}" required="required"/>
+                                <div class="invalid-feedback">
+                                    Ingresa el nombre de la actividad¡
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h:outputLabel for="fechaentrega" value="Fecha de entrega:" style="display:block;position:relative;z-index:2;background:#fff;padding-right:8px;left:8px;top:8px;width:auto;" />
+                                <h:inputText id="fechaentrega" value="#{contollerActividad.ta.fechaEntrega}" styleClass="form-control"  style="position:relative;z-index:1;"
+                                             required="true" requiredMessage=""
+                                             validatorMessage="Fecha requerida (yyyy-MM-dd)">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    <f:passThroughAttribute name="type" value="date" />
+                                    <f:passThroughAttribute name="placeholder" value="yyyy-MM-dd" />
+                                    <f:ajax event="blur" render="msgFechaNacimiento" />
+                                </h:inputText>
+                                <div class="invalid-feedback">
+                                    Ingresa fecha limite
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-8">
+                                <label for="validationCustom05" class="form-label">Descripción</label>
+                                <h:inputTextarea value="#{contollerActividad.ta.descripcion}" class="form-control" id="validationCustom05" required="required">Ingresa una breve descripción de la actividad</h:inputTextarea>
+                                <div class="invalid-feedback">
+                                    Ingresa el contenido de la actividad.
+                                </div>
+                            </div>     
+                            <div class="col-md-4">
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="group-material">
+
+                                        <h:outputLabel for="Curso" value="Curso:" style="display:block;position:relative;z-index:2;background:#fff;padding-right:8px;left:8px;top:8px;width:auto;" />
+                                        <h:selectOneMenu id="Curso" value="#{contollerActividad.asig.asignacionId}" required="true" styleClass="material-control tooltips-general" style="position:relative;z-index:1;"
+                                                         requiredMessage="Selecciona el curso..">
+                                            <f:selectItems value="#{contollerActividad.listarAsignaciones()}"></f:selectItems>
+                                        </h:selectOneMenu>
+                                        <h:message for="tipoDocumento" id="msgTipoDocumento" style="color: #e74c3c; font-size: 16px; margin-left: 0; display:inline; line-height:1; padding:0; margin:0; background:none; vertical-align:middle;" showDetail="true" showSummary="false" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <h:form>
+                                <h:commandButton action="#{contollerActividad.asignarAct}" value="Enviar" class="btn btn-primary" />
+                                </h:form>
+                            </div>
+                        </h:form>
+                        
+                    </div>
+                    <div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title text-center all-tittles">Ayuda del sistema</h4>
+                                </div>
+                                <div class="modal-body">
+                                    En esta pantalla podrás visualizar el promedio de tus indicadores de rendimiento en base a tus
+                                    calificaciones evaluadas por los docentes, separados por asignatura.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="zmdi zmdi-thumb-up"></i> &nbsp; De acuerdo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <script type="text/javascript">
+                        (() => {
+                            'use strict';
+                            const forms = document.querySelectorAll('.needs-validation');
+                            Array.from(forms).forEach(form => {
+                                form.addEventListener('submit', event => {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        })();
+                    </script>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
